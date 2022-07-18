@@ -41,8 +41,10 @@ jobs:
         uses: actions/download-artifact@v3
         #with:
           #name: test-${{ matrix.os }}
+      - run: ls -la 
       - name: Create Github release
         uses: ncipollo/release-action@v1
         with:
           tag: test
+          allowUpdates: true
           artifacts: test-*
