@@ -27,7 +27,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-${{ matrix.os }}
-          path: ./test-${{ matrix.os }}
   release-project:
     strategy:
       matrix:
@@ -39,8 +38,7 @@ jobs:
     steps:
       - name: Download applications
         uses: actions/download-artifact@v3
-        with:
-          path: ./
+        #with:
           #name: test-${{ matrix.os }}
       - run: ls -la 
       - name: Create Github release
