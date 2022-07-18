@@ -8,8 +8,8 @@ jobs:
     strategy:
       matrix:
         go: [1.18]
-        os: [ubuntu]
-        #os: [macos, windows, ubuntu]
+        #os: [ubuntu]
+        os: [macos, ubuntu]
     name: Build golang application
     runs-on: ${{ matrix.os}}-latest
     steps:
@@ -40,7 +40,8 @@ jobs:
       - name: Download applications
         uses: actions/download-artifact@v3
         with:
-          name: test-${{ matrix.os }}
+          #name: test-${{ matrix.os }}
+          name: test-*
       - name: Create Github release
         uses: ncipollo/release-action@v1
         with:
