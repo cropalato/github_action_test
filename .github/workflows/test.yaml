@@ -39,9 +39,8 @@ jobs:
     steps:
       - name: Download applications
         uses: actions/download-artifact@v3
-        with:
+        #with:
           #name: test-${{ matrix.os }}
-          name: test-*
       - name: Create Github release
         uses: ncipollo/release-action@v1
         with:
