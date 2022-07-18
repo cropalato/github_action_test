@@ -21,7 +21,7 @@ jobs:
           go-version-file: './go.mod'
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
-      - run: go build -o test-${{ matrix.os }} *.go
+      - run: go build -o test-${{ matrix.os }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
