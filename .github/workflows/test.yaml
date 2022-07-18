@@ -5,15 +5,20 @@ on:
       - main
 jobs:
   build-project:
+    strategy:
+      matrix:
+        go: [1.18]
+        os: [macos, windows, ubuntu]
     name: Build golang application
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os}}-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Setup Go environment
         uses: actions/setup-go@v3
         with:
+          go-version: ${{ matrix.go }}
           go-version-file: './go.mod'
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
-      - run: go build -o test *.go
+      - run: go build -o test-${{ matrix.os }} *.go
