@@ -22,3 +22,8 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
       - run: go build -o test-${{ matrix.os }} *.go
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-${{ matrix.os }}
+          path: ./test-${{ matrix.os }}
