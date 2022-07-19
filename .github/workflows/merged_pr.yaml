@@ -1,10 +1,12 @@
-name: github_action_test
+name: Merged PR
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - "main"
+    types: [opened, synchronize, closed]
 jobs:
   build-project:
+    if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
     strategy:
       matrix:
         go: [1.18]
@@ -28,6 +30,7 @@ jobs:
           name: test-${{ matrix.os }}
           path: ./
   release-project:
+    if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
     strategy:
       matrix:
         #os: [macos, windows, ubuntu]
