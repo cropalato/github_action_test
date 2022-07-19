@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, closed]
 jobs:
   build-project:
-    if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
+    if: ((github.event.action == 'closed' && github.event.pull_request.merged = true))
     strategy:
       matrix:
         go: [1.18]
@@ -30,7 +30,7 @@ jobs:
           name: test-${{ matrix.os }}
           path: ./
   release-project:
-    if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
+    if: ((github.event.action == 'closed' && github.event.pull_request.merged = true))
     strategy:
       matrix:
         #os: [macos, windows, ubuntu]
